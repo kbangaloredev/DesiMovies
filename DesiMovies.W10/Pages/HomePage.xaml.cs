@@ -26,6 +26,10 @@ namespace DesiMovies.Pages
     public sealed partial class HomePage : Page
     {
         InterstitialAd MyVideoAd;
+        InterstitialAd MyBannerAd;
+
+        bool bannerready, videoready;
+
         public HomePage()
         {
             //test Adunit data
@@ -34,13 +38,16 @@ namespace DesiMovies.Pages
 
             var MyAppID = "305189ec-650f-4f71-ac5b-f2b77cd866a2";
             // video adunit
-            //var MyAdUnitId = "11647923";
+            var MyVideoAdUnitId = "11647923";
             // Interstitial banner adunit
             var MyAdUnitId = "11652806";
+
+            
 
 
             // instantiate an InterstitialAd
             MyVideoAd = new InterstitialAd();
+            MyBannerAd = new InterstitialAd();
 
             // wire up all 4 events, see below for function templates
             MyVideoAd.AdReady += MyVideoAd_AdReady;
@@ -48,9 +55,11 @@ namespace DesiMovies.Pages
             MyVideoAd.Completed += MyVideoAd_Completed;
             MyVideoAd.Cancelled += MyVideoAd_Cancelled;
 
+            MyBannerAd.AdReady += MyBannerAd_AdReady;
+
             // pre-fetch an ad 30-60 seconds before you need it
-            // MyVideoAd.RequestAd(AdType.Video, MyAppID, MyAdUnitId);
-            MyVideoAd.RequestAd(AdType.Display, MyAppID, MyAdUnitId);
+            MyVideoAd.RequestAd(AdType.Video, MyAppID, MyVideoAdUnitId);
+            MyBannerAd.RequestAd(AdType.Display, MyAppID, MyAdUnitId);
 
 
             ViewModel = new MainViewModel(12);            
@@ -92,8 +101,21 @@ namespace DesiMovies.Pages
         void MyVideoAd_AdReady(object sender, object e)
         {
             // code
-            var A = MyVideoAd.State;
-            MyVideoAd.Show();
+            if (!bannerready)
+            {
+                MyVideoAd.Show();
+                videoready = true;
+            }
+        }
+
+        void MyBannerAd_AdReady(object sender, object e)
+        {
+            // code
+            if (!videoready)
+            {
+                MyBannerAd.Show();
+                bannerready = true;
+            }
         }
 
         void MyVideoAd_ErrorOccurred(object sender, AdErrorEventArgs e)
