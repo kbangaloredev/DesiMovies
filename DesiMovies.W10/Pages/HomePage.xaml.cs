@@ -40,7 +40,7 @@ namespace DesiMovies.Pages
             // video adunit
             var MyVideoAdUnitId = "11647923";
             // Interstitial banner adunit
-            var MyAdUnitId = "11652806";
+            var MyAdUnitId = "11673504";
 
             
 
