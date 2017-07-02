@@ -20,6 +20,8 @@ using AppStudio.Uwp.Navigation;
 using Microsoft.Advertising.WinRT.UI;
 
 using DesiMovies.ViewModels;
+using System.Diagnostics;
+using System;
 
 namespace DesiMovies.Pages
 {
@@ -59,7 +61,7 @@ namespace DesiMovies.Pages
 
             // pre-fetch an ad 30-60 seconds before you need it
             MyVideoAd.RequestAd(AdType.Video, MyAppID, MyVideoAdUnitId);
-            MyBannerAd.RequestAd(AdType.Display, MyAppID, MyAdUnitId);
+          //  MyBannerAd.RequestAd(AdType.Display, MyAppID, MyAdUnitId);
 
 
             ViewModel = new MainViewModel(12);            
@@ -101,6 +103,7 @@ namespace DesiMovies.Pages
         void MyVideoAd_AdReady(object sender, object e)
         {
             // code
+            Debug.WriteLine("Video Ready" + DateTime.Now);
             if (!bannerready)
             {
                 MyVideoAd.Show();
@@ -111,9 +114,10 @@ namespace DesiMovies.Pages
         void MyBannerAd_AdReady(object sender, object e)
         {
             // code
+            Debug.WriteLine("Banner Ready" + DateTime.Now);
             if (!videoready)
             {
-                MyBannerAd.Show();
+             //   MyBannerAd.Show();
                 bannerready = true;
             }
         }
