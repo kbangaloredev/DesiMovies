@@ -9,6 +9,7 @@
     xmlns:was_controls="using:AppStudio.Uwp.Controls"
     xmlns:list_layouts="using:DesiMovies.Layouts.List"
     xmlns:controls="using:DesiMovies.Layouts.Controls"
+    xmlns:UI="using:Microsoft.Advertising.WinRT.UI"
     xmlns:vm="using:DesiMovies.ViewModels"
     xmlns:triggers="using:DesiMovies.Triggers"
     DataContext="{Binding RelativeSource={RelativeSource Self}}"
@@ -34,20 +35,28 @@
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
+
 		<was_controls:ErrorNotificationControl                
 			x:Uid="ListErrorNotificationControl"                
 			ErrorColor="{StaticResource DescriptionForeground}"
 			ErrorVisibility="{x:Bind ViewModel.HasLoadDataErrors, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
-			Margin="10,0,18,0"/>
-		<list_layouts:ListTextCard
+			Margin="10,0,18,0" Height="90" VerticalAlignment="Top"/>
+		<list_layouts:ListBigHorizontalCardBox
             Grid.Row="1"
+            Grid.Column="0"
             OneRowModeEnabled="False"
             ItemsSource="{x:Bind ViewModel.Items}"
             ItemClickCommand="{x:Bind ViewModel.ItemClickCommand}"
             EndOfScrollCommand="{x:Bind ViewModel.LoadNextPageCommand}">
-        </list_layouts:ListTextCard>
+        </list_layouts:ListBigHorizontalCardBox>
 		<Grid
 			Grid.Row="1"
+             Grid.Column="0"
             VerticalAlignment="Top"
             Visibility="{x:Bind ViewModel.IsBusy, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Collapsed, Mode=OneWay}">
             <Grid.Background>
@@ -60,16 +69,54 @@
         </Grid>
 		<ProgressBar
             Grid.Row="2"
+            Grid.Column="0"
             Margin="0,6,0,6"
             IsIndeterminate="True"
             Foreground="{StaticResource DescriptionForeground}"
             Visibility="{x:Bind ViewModel.IsLoadingNextPage, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Collapsed, Mode=OneWay}"/>
+     
+        
         <controls:DataUpdateInformationControl
 			Grid.Row="3"
+            Grid.Column="0"
 			Margin="8,4,8,4"
 			HorizontalAlignment="Left"
 			Color="{StaticResource DescriptionForeground}"
 			HasLocalData="{x:Bind ViewModel.HasLocalData}"
 			LastUpdateDateTime="{x:Bind ViewModel.LastUpdated, Mode=OneWay}"/>
+
+        <StackPanel
+            Grid.Column="1"
+            Grid.Row="1"
+            Margin="0,5,0,0">
+            <UI:AdControl 
+                    x:Name="adcontrol2"
+                    ApplicationId="305189ec-650f-4f71-ac5b-f2b77cd866a2"
+                    AdUnitId="11652812"
+                    Width="300" 
+                    Height="250" 
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"/>
+
+        <UI:AdControl 
+                    x:Name="adcontrol3"
+                    ApplicationId="305189ec-650f-4f71-ac5b-f2b77cd866a2"
+                    AdUnitId="11652812"
+                    Width="300" 
+                    Height="600" 
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"/>
+
+        </StackPanel>
+
+        <UI:AdControl 
+                    Grid.Column="0"
+                    x:Name="adcontrol1"
+                    ApplicationId="305189ec-650f-4f71-ac5b-f2b77cd866a2"
+                    AdUnitId="11652812"
+                    Width="728" 
+                    Height="90" 
+                    HorizontalAlignment="Center"/>
+        
     </Grid>
 </Page>

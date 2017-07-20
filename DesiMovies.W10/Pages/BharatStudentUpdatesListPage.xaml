@@ -101,9 +101,9 @@
         <UI:AdControl 
                     x:Name="adcontrol3"
                     ApplicationId="305189ec-650f-4f71-ac5b-f2b77cd866a2"
-                    AdUnitId="11652812"
+                    AdUnitId="11689985"
                     Width="300" 
-                    Height="600" 
+                    Height="250" 
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top"/>
 

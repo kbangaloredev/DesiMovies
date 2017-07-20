@@ -15,15 +15,37 @@ using AppStudio.DataProviders.YouTube;
 using DesiMovies.Sections;
 using DesiMovies.ViewModels;
 using AppStudio.Uwp;
+using Microsoft.Advertising.WinRT.UI;
 
 namespace DesiMovies.Pages
 {
     public sealed partial class LatestVideosListPage : Page
     {
 	    public ListViewModel ViewModel { get; set; }
+
+        InterstitialAd MyVideoAd;
         public LatestVideosListPage()
         {
-			ViewModel = ViewModelFactory.NewList(new LatestVideosSection());
+
+ 
+
+                var MyAppID = "305189ec-650f-4f71-ac5b-f2b77cd866a2";
+                // video adunit
+                var MyVideoAdUnitId = "11647923";
+                
+                // instantiate an InterstitialAd
+                MyVideoAd = new InterstitialAd();
+
+                // wire up all 4 events, see below for function templates
+                MyVideoAd.AdReady += MyVideoAd_AdReady;
+                MyVideoAd.ErrorOccurred += MyVideoAd_ErrorOccurred;
+                MyVideoAd.Completed += MyVideoAd_Completed;
+                MyVideoAd.Cancelled += MyVideoAd_Cancelled;
+
+                // pre-fetch an ad 30-60 seconds before you need it
+                MyVideoAd.RequestAd(AdType.Video, MyAppID, MyVideoAdUnitId);
+                
+                ViewModel = ViewModelFactory.NewList(new LatestVideosSection());
 
             this.InitializeComponent();
 			commandBar.DataContext = ViewModel;
@@ -42,6 +64,43 @@ namespace DesiMovies.Pages
 			}			
             base.OnNavigatedTo(e);
         }
+
+        void MyVideoAd_AdReady(object sender, object e)
+        {
+            // code
+            MyVideoAd.Show();
+        }
+
+
+        void MyVideoAd_ErrorOccurred(object sender, AdErrorEventArgs e)
+        {
+            // code
+
+       //     var MyAppID = "305189ec-650f-4f71-ac5b-f2b77cd866a2";
+            // video adunit
+       //     var MyVideoAdUnitId = "11647923";
+
+            // pre-fetch an ad 30-60 seconds before you need it
+          //  MyVideoAd.RequestAd(AdType.Video, MyAppID, MyVideoAdUnitId);
+            
+            //Wait
+
+            //Show the Ad
+
+        }
+
+        void MyVideoAd_Completed(object sender, object e)
+        {
+            // code
+       }
+
+        void MyVideoAd_Cancelled(object sender, object e)
+        {
+            // code
+        }
+
+
+
 
     }
 }

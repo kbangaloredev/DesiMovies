@@ -97,8 +97,11 @@ namespace DesiMovies.Pages
         void MyVideoAd_ErrorOccurred(object sender, AdErrorEventArgs e)
         {
             // code
-
             var A = MyVideoAd.State;
+            // On Error - Make a second call for a video Ad
+            // instantiate an InterstitialAd
+            MyVideoAd = new InterstitialAd();
+
         }
 
         void MyVideoAd_Completed(object sender, object e)

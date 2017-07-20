@@ -34,15 +34,11 @@ namespace DesiMovies.Pages
 
         public HomePage()
         {
-            //test Adunit data
-            //var MyAppID = "d25517cb-12d4-4699-8bdc-52040c712cab";
-            //var MyAdUnitId = "11389925";
+
 
             var MyAppID = "305189ec-650f-4f71-ac5b-f2b77cd866a2";
             // video adunit
             var MyVideoAdUnitId = "11647923";
-            // Interstitial banner adunit
-            var MyAdUnitId = "11673504";
 
             
 
