@@ -75,7 +75,7 @@
 
         <UI:AdControl 
                     x:Name="adcontrol1"
-                    ApplicationId="305189ec-650f-4f71-ac5b-f2b77cd866a2"
+                    ApplicationId="9wzdncrdx48s"
                     AdUnitId="11652807"
                     Width="728" 
                     Height="90" 

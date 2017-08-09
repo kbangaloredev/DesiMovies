@@ -1,6 +1,7 @@
-{
-  "dependencies": {  
+﻿{
+  "dependencies": {
     "HockeySDK.UWP": "4.0.0",
+    "Microsoft.Advertising.XAML": "10.1705.16001",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
     "WindowsAppStudio.DataProviders": "1.5.*",
     "WindowsAppStudio.Uwp": "1.5.*"

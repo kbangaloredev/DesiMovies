@@ -1,1 +1,1 @@
-C:\Users\kiranban\Source\Repos\DesiMovies\DesiMovies.W10\bin\ARM\Release\Upload\DesiMovies.W10_4.5.26.0\DesiMovies.W10_4.5.26.0_x86_x64_arm.appxbundle
+C:\Users\kiranban\Source\Repos\DesiMovies\DesiMovies.W10\bin\ARM\Release\Upload\DesiMovies.W10_4.5.28.0\DesiMovies.W10_4.5.28.0_x86_x64_arm.appxbundle

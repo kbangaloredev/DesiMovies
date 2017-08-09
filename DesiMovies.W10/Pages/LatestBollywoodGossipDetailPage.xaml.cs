@@ -35,7 +35,7 @@ namespace DesiMovies.Pages
            
 
 
-            var MyAppID = "305189ec-650f-4f71-ac5b-f2b77cd866a2";
+            var MyAppID = "9wzdncrdx48s";
             // video adunit
             var MyVideoAdUnitId = "11647923";
             // Interstitial banner adunit
