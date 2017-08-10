@@ -22,38 +22,38 @@ namespace DesiMovies.Pages
     public sealed partial class LatestBollywoodGossipListPage : Page
     {
 
-        InterstitialAd MyVideoAd;
-        InterstitialAd MyBannerAd;
-        bool bannerready, videoready;
+     //   InterstitialAd MyVideoAd;
+     //   InterstitialAd MyBannerAd;
+     //   bool bannerready, videoready;
 
         public ListViewModel ViewModel { get; set; }
         public LatestBollywoodGossipListPage()
         {
 
-            var MyAppID = "9wzdncrdx48s";
+       //     var MyAppID = "9wzdncrdx48s";
             // video adunit
-            var MyVideoAdUnitId = "11647923";
+          //  var MyVideoAdUnitId = "11647923";
             // Interstitial banner adunit
-            var MyAdUnitId = "11673504";
+       //     var MyAdUnitId = "11673504";
 
 
 
 
             // instantiate an InterstitialAd
-            MyVideoAd = new InterstitialAd();
-            MyBannerAd = new InterstitialAd();
+      //      MyVideoAd = new InterstitialAd();
+      //      MyBannerAd = new InterstitialAd();
 
             // wire up all 4 events, see below for function templates
-            MyVideoAd.AdReady += MyVideoAd_AdReady;
-            MyVideoAd.ErrorOccurred += MyVideoAd_ErrorOccurred;
-            MyVideoAd.Completed += MyVideoAd_Completed;
-            MyVideoAd.Cancelled += MyVideoAd_Cancelled;
+       //     MyVideoAd.AdReady += MyVideoAd_AdReady;
+       //     MyVideoAd.ErrorOccurred += MyVideoAd_ErrorOccurred;
+       //     MyVideoAd.Completed += MyVideoAd_Completed;
+      //      MyVideoAd.Cancelled += MyVideoAd_Cancelled;
 
-            MyBannerAd.AdReady += MyBannerAd_AdReady;
+      //      MyBannerAd.AdReady += MyBannerAd_AdReady;
 
             // pre-fetch an ad 30-60 seconds before you need it
        //     MyVideoAd.RequestAd(AdType.Video, MyAppID, MyVideoAdUnitId);
-            MyBannerAd.RequestAd(AdType.Display, MyAppID, MyAdUnitId);
+      //      MyBannerAd.RequestAd(AdType.Display, MyAppID, MyAdUnitId);
 
 
 
@@ -61,7 +61,7 @@ namespace DesiMovies.Pages
 
             this.InitializeComponent();
 			commandBar.DataContext = ViewModel;
-			NavigationCacheMode = NavigationCacheMode.Enabled;
+			NavigationCacheMode = NavigationCacheMode.Disabled;
             Microsoft.HockeyApp.HockeyClient.Current.TrackEvent(this.GetType().FullName);
         }
 
@@ -77,46 +77,46 @@ namespace DesiMovies.Pages
             base.OnNavigatedTo(e);
         }
 
-        void MyVideoAd_AdReady(object sender, object e)
-        {
-            // code
-            if (!bannerready)
-            {
-     //           MyVideoAd.Show();
-     //           videoready = true;
-            }
-        }
+     //   void MyVideoAd_AdReady(object sender, object e)
+     //   {
+     //       // code
+     //       if (!bannerready)
+     //       {
+     ////           MyVideoAd.Show();
+     ////           videoready = true;
+     //       }
+     //   }
 
-        void MyBannerAd_AdReady(object sender, object e)
-        {
-            // code
-                MyBannerAd.Show();
-                bannerready = true;
-        }
+     //   void MyBannerAd_AdReady(object sender, object e)
+     //   {
+     //       // code
+     //           MyBannerAd.Show();
+     //           bannerready = true;
+     //   }
 
-        void MyVideoAd_ErrorOccurred(object sender, AdErrorEventArgs e)
-        {
-            // code
-            var A = MyVideoAd.State;
-            // On Error - Make a second call for a video Ad
-            // instantiate an InterstitialAd
-            MyVideoAd = new InterstitialAd();
+     //   void MyVideoAd_ErrorOccurred(object sender, AdErrorEventArgs e)
+     //   {
+     //       // code
+     //       var A = MyVideoAd.State;
+     //       // On Error - Make a second call for a video Ad
+     //       // instantiate an InterstitialAd
+     //       MyVideoAd = new InterstitialAd();
 
-        }
+     //   }
 
-        void MyVideoAd_Completed(object sender, object e)
-        {
-            // code
+     //   void MyVideoAd_Completed(object sender, object e)
+     //   {
+     //       // code
 
-            var A = MyVideoAd.State;
-        }
+     //       var A = MyVideoAd.State;
+     //   }
 
-        void MyVideoAd_Cancelled(object sender, object e)
-        {
-            // code
+     //   void MyVideoAd_Cancelled(object sender, object e)
+     //   {
+     //       // code
 
-            var A = MyVideoAd.State;
-        }
+     //       var A = MyVideoAd.State;
+     //   }
 
     }
 }

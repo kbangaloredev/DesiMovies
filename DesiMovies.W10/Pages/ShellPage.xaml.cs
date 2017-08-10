@@ -118,7 +118,7 @@ namespace DesiMovies.Pages
 
             NavigationItems.Add(AppNavigation.NodeFromAction(
 				"0b5e33fb-860a-4413-b2c3-525d122ece4e",
-                "latest bollywood gossip",                
+                "Watch Hindi Movies",                
                 AppNavigation.ActionFromPage("LatestBollywoodGossipListPage"),
 				AppNavigation.IconFromGlyph("\ue173")));
 

@@ -65,6 +65,8 @@
             IsIndeterminate="True"
             Foreground="{StaticResource DescriptionForeground}"
             Visibility="{x:Bind ViewModel.IsLoadingNextPage, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Collapsed, Mode=OneWay}"/>
+
+
         <controls:DataUpdateInformationControl
 			Grid.Row="3"
 			Margin="8,4,8,4"

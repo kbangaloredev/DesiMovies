@@ -27,7 +27,7 @@ namespace DesiMovies.Pages
 
             this.InitializeComponent();
 			commandBar.DataContext = ViewModel;
-			NavigationCacheMode = NavigationCacheMode.Enabled;
+			NavigationCacheMode = NavigationCacheMode.Disabled;
             Microsoft.HockeyApp.HockeyClient.Current.TrackEvent(this.GetType().FullName);
         }
 

@@ -31,7 +31,8 @@ namespace DesiMovies.Sections
             var config = new YouTubeDataConfig
             {
                 QueryType = YouTubeQueryType.Playlist,
-                Query = @"PLK2ZPgxnEVCXVHENt6MUUoXF8s2UDh7la",
+                //       Query = @"PLK2ZPgxnEVCXVHENt6MUUoXF8s2UDh7la",
+                Query = @"PLIPLqGm8fkLq1HwYvmsn23v0fWX0TdBMH",
             };
             return await _dataProvider.LoadDataAsync(config, MaxRecords);
         }
@@ -55,7 +56,7 @@ namespace DesiMovies.Sections
             {
                 return new ListPageConfig<YouTubeSchema>
                 {
-                    Title = "latest bollywood gossip",
+                    Title = "watch hindi movies",
 
                     Page = typeof(Pages.LatestBollywoodGossipListPage),
 
@@ -101,7 +102,7 @@ namespace DesiMovies.Sections
 
                 return new DetailPageConfig<YouTubeSchema>
                 {
-                    Title = "latest bollywood gossip",
+                    Title = "watch hindi movies",
                     LayoutBindings = bindings,
                     Actions = actions
                 };

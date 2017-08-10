@@ -41,7 +41,7 @@ namespace DesiMovies.Pages
 
             this.InitializeComponent();
 			commandBar.DataContext = ViewModel;
-			NavigationCacheMode = NavigationCacheMode.Enabled;
+			NavigationCacheMode = NavigationCacheMode.Disabled;
             Microsoft.HockeyApp.HockeyClient.Current.TrackEvent(this.GetType().FullName);
         }
 
@@ -49,11 +49,11 @@ namespace DesiMovies.Pages
         {
 			ShellPage.Current.ShellControl.SelectItem("d19279f6-cc25-42c4-af06-819a9c100ef3");
 			ShellPage.Current.ShellControl.SetCommandBar(commandBar);
-			if (e.NavigationMode == NavigationMode.New)
-            {			
-				await this.ViewModel.LoadDataAsync();
+            if (e.NavigationMode == NavigationMode.New)
+            {
+                await this.ViewModel.LoadDataAsync();
                 this.ScrollToTop();
-			}			
+            }
             base.OnNavigatedTo(e);
         }
         void MyBannerAd_AdReady(object sender, object e)

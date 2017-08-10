@@ -35,30 +35,30 @@ namespace DesiMovies.Pages
            
 
 
-            var MyAppID = "9wzdncrdx48s";
-            // video adunit
-            var MyVideoAdUnitId = "11647923";
-            // Interstitial banner adunit
-            var MyAdUnitId = "11673504";
+            //var MyAppID = "9wzdncrdx48s";
+            //// video adunit
+            //var MyVideoAdUnitId = "11647923";
+            //// Interstitial banner adunit
+            //var MyAdUnitId = "11673504";
 
 
 
 
             // instantiate an InterstitialAd
-            MyVideoAd = new InterstitialAd();
-            MyBannerAd = new InterstitialAd();
+            //MyVideoAd = new InterstitialAd();
+            //MyBannerAd = new InterstitialAd();
 
             // wire up all 4 events, see below for function templates
-            MyVideoAd.AdReady += MyVideoAd_AdReady;
-            MyVideoAd.ErrorOccurred += MyVideoAd_ErrorOccurred;
-            MyVideoAd.Completed += MyVideoAd_Completed;
-            MyVideoAd.Cancelled += MyVideoAd_Cancelled;
+            //MyVideoAd.AdReady += MyVideoAd_AdReady;
+            //MyVideoAd.ErrorOccurred += MyVideoAd_ErrorOccurred;
+            //MyVideoAd.Completed += MyVideoAd_Completed;
+            //MyVideoAd.Cancelled += MyVideoAd_Cancelled;
 
-            MyBannerAd.AdReady += MyBannerAd_AdReady;
+            //MyBannerAd.AdReady += MyBannerAd_AdReady;
 
             // pre-fetch an ad 30-60 seconds before you need it
-            MyVideoAd.RequestAd(AdType.Video, MyAppID, MyVideoAdUnitId);
-            MyBannerAd.RequestAd(AdType.Display, MyAppID, MyAdUnitId);
+            //MyVideoAd.RequestAd(AdType.Video, MyAppID, MyVideoAdUnitId);
+            //MyBannerAd.RequestAd(AdType.Display, MyAppID, MyAdUnitId);
 
 
             ViewModel = ViewModelFactory.NewDetail(new LatestBollywoodGossipSection());
@@ -94,46 +94,46 @@ namespace DesiMovies.Pages
             ViewModel.ShareContent(args.Request);
         }
 
-        void MyVideoAd_AdReady(object sender, object e)
-        {
-            // code
-            if (!bannerready)
-            {
-                MyVideoAd.Show();
-                videoready = true;
-            }
-        }
+        //void MyVideoAd_AdReady(object sender, object e)
+        //{
+        //    // code
+        //    if (!bannerready)
+        //    {
+        //        MyVideoAd.Show();
+        //        videoready = true;
+        //    }
+        //}
 
-        void MyBannerAd_AdReady(object sender, object e)
-        {
-            // code
-            if (!videoready)
-            {
-                MyBannerAd.Show();
-                bannerready = true;
-            }
-        }
+        //void MyBannerAd_AdReady(object sender, object e)
+        //{
+        //    // code
+        //    if (!videoready)
+        //    {
+        //        MyBannerAd.Show();
+        //        bannerready = true;
+        //    }
+        //}
 
-        void MyVideoAd_ErrorOccurred(object sender, AdErrorEventArgs e)
-        {
-            // code
+        //void MyVideoAd_ErrorOccurred(object sender, AdErrorEventArgs e)
+        //{
+        //    // code
 
-            var A = MyVideoAd.State;
-        }
+        //    var A = MyVideoAd.State;
+        //}
 
-        void MyVideoAd_Completed(object sender, object e)
-        {
-            // code
+        //void MyVideoAd_Completed(object sender, object e)
+        //{
+        //    // code
 
-            var A = MyVideoAd.State;
-        }
+        //    var A = MyVideoAd.State;
+        //}
 
-        void MyVideoAd_Cancelled(object sender, object e)
-        {
-            // code
+        //void MyVideoAd_Cancelled(object sender, object e)
+        //{
+        //    // code
 
-            var A = MyVideoAd.State;
-        }
+        //    var A = MyVideoAd.State;
+        //}
 
     }
 }
