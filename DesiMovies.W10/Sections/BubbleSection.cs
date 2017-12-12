@@ -27,7 +27,7 @@ namespace DesiMovies.Sections
         {
             var config = new RssDataConfig
             {
-                Url = new Uri("http://www.bollywoodbubble.com/feed/"),
+                Url = new Uri("http://www.bollywoodhungama.com/rss/news.xml"),
             };
             return await _dataProvider.LoadDataAsync(config, MaxRecords);
         }
@@ -51,7 +51,7 @@ namespace DesiMovies.Sections
             {
                 return new ListPageConfig<RssSchema>
                 {
-                    Title = "bubble",
+                    Title = "Bollywood Hungama",
 
                     Page = typeof(Pages.BubbleListPage),
 
@@ -91,7 +91,7 @@ namespace DesiMovies.Sections
 
                 return new DetailPageConfig<RssSchema>
                 {
-                    Title = "bubble",
+                    Title = "Bollywood Hungama",
                     LayoutBindings = bindings,
                     Actions = actions
                 };
