@@ -16,8 +16,9 @@
     d:DataContext="{d:DesignData Source=/Assets/Design/DesignData.json, Type=vm:DesignViewModel, IsDesignTimeCreatable=true}"
     mc:Ignorable="d">
 
-    <was_controls:ShellControl.CommandBar>
-        <was_actions:ActionsCommandBar
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <was_controls:ShellControl.CommandBar>
+            <was_actions:ActionsCommandBar
             x:Name="commandBar"
             ActionsSource="{Binding Actions}"            
             Style="{StaticResource WasCommandBarStyle}"
@@ -25,47 +26,47 @@
             IsVisible="{Binding HasActions}"
             Foreground="{StaticResource AppBarForeground}"            
             Background="{StaticResource AppBarBackground}">
-		</was_actions:ActionsCommandBar>
-    </was_controls:ShellControl.CommandBar>
+            </was_actions:ActionsCommandBar>
+        </was_controls:ShellControl.CommandBar>
 
-    <Grid Background="{StaticResource AppBackground}">
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="*"/>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
-		</Grid.RowDefinitions>
-		<was_controls:ErrorNotificationControl                
+        <Grid Background="{StaticResource AppBackground}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <was_controls:ErrorNotificationControl                
 			x:Uid="ListErrorNotificationControl"                
 			ErrorColor="{StaticResource DescriptionForeground}"
 			ErrorVisibility="{x:Bind ViewModel.HasLoadDataErrors, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
 			Margin="10,0,18,0"/>
-		<list_layouts:ListBigVerticalCardBox
+            <list_layouts:ListBigVerticalCardBox
             Grid.Row="1"
             OneRowModeEnabled="False"
             ItemsSource="{x:Bind ViewModel.Items}"
             ItemClickCommand="{x:Bind ViewModel.ItemClickCommand}"
             EndOfScrollCommand="{x:Bind ViewModel.LoadNextPageCommand}">
-        </list_layouts:ListBigVerticalCardBox>
-		<Grid
+            </list_layouts:ListBigVerticalCardBox>
+            <Grid
 			Grid.Row="1"
             VerticalAlignment="Top"
             Visibility="{x:Bind ViewModel.IsBusy, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Collapsed, Mode=OneWay}">
-            <Grid.Background>
-                <SolidColorBrush Color="{StaticResource DescriptionForegroundColor}" Opacity="0.05"/>
-            </Grid.Background>
-            <ProgressBar
+                <Grid.Background>
+                    <SolidColorBrush Color="{StaticResource DescriptionForegroundColor}" Opacity="0.05"/>
+                </Grid.Background>
+                <ProgressBar
                 Margin="0,24"
                 IsIndeterminate="True"
                 Foreground="{StaticResource DescriptionForeground}"/>
-        </Grid>
-		<ProgressBar
+            </Grid>
+            <ProgressBar
             Grid.Row="2"
             Margin="0,6,0,6"
             IsIndeterminate="True"
             Foreground="{StaticResource DescriptionForeground}"
             Visibility="{x:Bind ViewModel.IsLoadingNextPage, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Collapsed, Mode=OneWay}"/>
-        <controls:DataUpdateInformationControl
+            <controls:DataUpdateInformationControl
 			Grid.Row="3"
 			Margin="8,4,8,4"
 			HorizontalAlignment="Left"
@@ -73,12 +74,13 @@
 			HasLocalData="{x:Bind ViewModel.HasLocalData}"
 			LastUpdateDateTime="{x:Bind ViewModel.LastUpdated, Mode=OneWay}"/>
 
-        <UI:AdControl 
+            <UI:AdControl 
                     x:Name="adcontrol1"
                     ApplicationId="9wzdncrdx48s"
                     AdUnitId="11652808"
                     Width="728" 
                     Height="90" 
                     HorizontalAlignment="Center"/>
-    </Grid>
+        </Grid>
+    </ScrollViewer>
 </Page>

@@ -23,6 +23,10 @@ using DesiMovies.ViewModels;
 using System.Diagnostics;
 using System;
 
+using Windows.Services.Store;
+using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
+
 namespace DesiMovies.Pages
 {
     public sealed partial class HomePage : Page
@@ -145,5 +149,31 @@ namespace DesiMovies.Pages
             var advertisingId = Windows.System.UserProfile.AdvertisingManager.AdvertisingId;
             sender.NavigateUri = new System.Uri("https://dpa-fwl.microsoft.com/redirect.html?referrerID="+ advertisingId +"&rurl=http://reviewsbykiran.blogspot.in/");
         }
+
+        private async void Reviews_Click(Windows.UI.Xaml.Documents.Hyperlink sender, Windows.UI.Xaml.Documents.HyperlinkClickEventArgs args)
+        {
+            bool result = await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-windows-store://review/?ProductId=9wzdncrdx48s"));
+        }
+
+        public async Task<bool> ShowRatingReviewDialog()
+        {
+            StoreSendRequestResult result = await StoreRequestHelper.SendRequestAsync(
+                StoreContext.GetDefault(), 16, String.Empty);
+
+            if (result.ExtendedError == null)
+            {
+                JObject jsonObject = JObject.Parse(result.Response);
+                if (jsonObject.SelectToken("status").ToString() == "success")
+                {
+                    // The customer rated or reviewed the app.
+                    return true;
+                }
+            }
+
+            // There was an error with the request, or the customer chose not to
+            // rate or review the app.
+            return false;
+        }
+
     }
 }

@@ -16,51 +16,52 @@
     d:DataContext="{d:DesignData Source=/Assets/Design/DetailDesignData.json, Type=vm:DesignViewModel, IsDesignTimeCreatable=true}"
     mc:Ignorable="d">
 
-
-	<was_controls:ShellControl.CommandBar>
-        <was_actions:ActionsCommandBar
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <was_controls:ShellControl.CommandBar>
+            <was_actions:ActionsCommandBar
             x:Name="commandBar"
             ActionsSource="{Binding SelectedItem.Actions}"
             Style="{StaticResource WasCommandBarStyle}"
             Background="{StaticResource AppBarBackground}"
             Foreground="{StaticResource AppBarForeground}"
             CommandBarOverflowPresenterStyle="{StaticResource WasCommandBarOverflowPresenter}">
-            <was_actions:ActionsCommandBar.PrimaryCommands>
-            </was_actions:ActionsCommandBar.PrimaryCommands>
-            <was_actions:ActionsCommandBar.SecondaryCommands>
-                <AppBarButton
+                <was_actions:ActionsCommandBar.PrimaryCommands>
+                </was_actions:ActionsCommandBar.PrimaryCommands>
+                <was_actions:ActionsCommandBar.SecondaryCommands>
+                    <AppBarButton
                     x:Uid="ShareItemButton"
                     Icon="ReShare"
                     Command="{Binding Source={StaticResource ActionCommands}, Path=Share}"
                     Foreground="{StaticResource AppBarForeground}"
                     Style="{StaticResource WasAppBarButtonStyle}"/>
-             
-                <AppBarButton
+
+                    <AppBarButton
                     x:Uid="SmallTextButton"
                     Command="{Binding ApplyFontSizeCommand}"
                     CommandParameter="DescriptionTextSizeSmall"
                     Foreground="{StaticResource AppBarForeground}"
                     Style="{StaticResource WasAppBarButtonStyle}">
-                </AppBarButton>
-                <AppBarButton
+                    </AppBarButton>
+                    <AppBarButton
                     x:Uid="NormalTextButton"
                     Command="{Binding ApplyFontSizeCommand}"
                     CommandParameter="DescriptionTextSizeNormal"
                     Foreground="{StaticResource AppBarForeground}"
                     Style="{StaticResource WasAppBarButtonStyle}">
-                </AppBarButton>
-                <AppBarButton
+                    </AppBarButton>
+                    <AppBarButton
                     x:Uid="BigTextButton"
                     Command="{Binding ApplyFontSizeCommand}"
                     CommandParameter="DescriptionTextSizeLarge"
                     Foreground="{StaticResource AppBarForeground}"
                     Style="{StaticResource WasAppBarButtonStyle}">
-                </AppBarButton>
-            </was_actions:ActionsCommandBar.SecondaryCommands>
-        </was_actions:ActionsCommandBar>
-    </was_controls:ShellControl.CommandBar>
-    
-    <Grid Background="{StaticResource AppBackground}">
-        <layouts:RelatedContentDetailLayout ViewModel="{x:Bind ViewModel}" />
-    </Grid>
+                    </AppBarButton>
+                </was_actions:ActionsCommandBar.SecondaryCommands>
+            </was_actions:ActionsCommandBar>
+        </was_controls:ShellControl.CommandBar>
+
+        <Grid Background="{StaticResource AppBackground}">
+            <layouts:RelatedContentDetailLayout ViewModel="{x:Bind ViewModel}" />
+        </Grid>
+    </ScrollViewer>
 </Page>
