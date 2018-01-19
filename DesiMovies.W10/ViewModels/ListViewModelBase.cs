@@ -8,6 +8,9 @@ using AppStudio.DataProviders;
 
 using DesiMovies.Pages;
 using DesiMovies.Navigation;
+using AppStudio.DataProviders.Rss;
+using System;
+using AppStudio.Uwp.Navigation;
 
 namespace DesiMovies.ViewModels
 {
@@ -42,7 +45,15 @@ namespace DesiMovies.ViewModels
                 return new RelayCommand<ItemViewModel>(
                 (item) =>
                 {
-                    AppNavigation.Navigate(item, SourceItems);
+                    if (item != null && item.SubTitle != null && item.SubTitle.StartsWith("  Ad  "))
+                    {
+                        Windows.System.Launcher.LaunchUriAsync(new Uri("http://developer.microsoft.com", UriKind.Absolute));
+                        //NavigationService.NavigateTo();
+                    }
+                    else
+                    {
+                        AppNavigation.Navigate(item, SourceItems);
+                    }
                 });
             }
         }

@@ -17,6 +17,9 @@ using Windows.UI.Xaml.Controls;
 using DesiMovies.Navigation;
 using DesiMovies.Sections;
 using DesiMovies.Services;
+using Microsoft.Advertising.WinRT.UI;
+using Microsoft.Advertising.Shared.WinRT;
+using AppStudio.DataProviders.Rss;
 
 namespace DesiMovies.ViewModels
 {
@@ -101,6 +104,11 @@ namespace DesiMovies.ViewModels
         private Section<TSchema> _section;
         private int _visibleItems;
         private SchemaBase _connected;
+        private NativeAd ad;
+        private IEnumerable<TSchema> contentValue;
+        private Func<ItemViewModel, bool> filterFuncValue;
+        private int adCounter = 0;
+
 
         protected override Type ListPage
         {
@@ -112,10 +120,12 @@ namespace DesiMovies.ViewModels
 
         public ListViewModel(Section<TSchema> section, int visibleItems = 0) : base(section.ListPage.Title, section.Name)
         {
-            _section = section;
+
+        _section = section;
             _visibleItems = visibleItems;
 
-            HasLocalData = !section.NeedsNetwork;
+
+        HasLocalData = !section.NeedsNetwork;
 			HasMorePages = true;
 
             if (_section.NeedsNetwork)
@@ -128,6 +138,32 @@ namespace DesiMovies.ViewModels
 					ActionType = ActionType.Primary
 				});
             }
+
+            if (_section.Name == "BharatStudentUpdatesSection")
+            {
+                ad = null;
+                  NativeAdsManager nativeAdController = new NativeAdsManager("9WZDNCRDX48S", "1100016006");
+         //       NativeAdsManager nativeAdController = new NativeAdsManager("9WZDNCRDX48S", "TEST");
+                nativeAdController.RequestAd();
+                nativeAdController.AdReady += OnAdReady;
+                nativeAdController.ErrorOccurred += OnAdError;
+            }
+
+        }
+
+        void OnAdReady(object sender, object e)
+        {
+            ad = (NativeAd)e;
+        }
+
+
+        void OnAdError(object sender, object e)
+        {
+            adCounter++;
+            NativeAdsManager nativeAdController = new NativeAdsManager("9WZDNCRDX48S", "TEST");
+            nativeAdController.RequestAd();
+            nativeAdController.AdReady += OnAdReady;
+            nativeAdController.ErrorOccurred += OnAdError;
         }
 
         public override async Task LoadDataAsync(bool forceRefresh = false, SchemaBase connected = null)
@@ -238,10 +274,41 @@ namespace DesiMovies.ViewModels
             }
         }
 
-        private void ParseItems(IEnumerable<TSchema> content, Func<ItemViewModel, bool> filterFunc = null)
+        private async void ParseItems(IEnumerable<TSchema> content, Func<ItemViewModel, bool> filterFunc = null)
         {
 		    SourceItems.Clear();
             SourceItems.AddRange(content);
+
+
+            if (_section.Name == "BharatStudentUpdatesSection")
+            {
+                while (adCounter < 2 && ad == null) 
+                {
+                    await Task.Delay(1000);
+                }
+                if (ad == null)
+                {
+                    contentValue = content;
+                    filterFuncValue = filterFunc;
+
+                }
+                else
+                {
+                    var contentList = content.ToList<TSchema>() as List<RssSchema>;
+                    if (contentList != null)
+                    {
+                        contentList.Insert(1, new RssSchema()
+                        {
+                     
+                            Title = ad.Title,
+                            ImageUrl = ad.MainImages[0].Url,
+                            Summary = "  Ad  " + ad.Description,                   
+                        });
+
+                        content = contentList as IEnumerable<TSchema>;
+                    }
+                }
+            }
 
             var parsedItems = new List<ItemViewModel>();
             foreach (var item in GetVisibleItems(content, _visibleItems))
