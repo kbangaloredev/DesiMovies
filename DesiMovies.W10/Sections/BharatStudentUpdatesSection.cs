@@ -91,7 +91,7 @@ namespace DesiMovies.Sections
 
                 return new DetailPageConfig<RssSchema>
                 {
-                    Title = "Bharat Student Updates",
+                    Title = "Bharat Student updates",
                     LayoutBindings = bindings,
                     Actions = actions
                 };

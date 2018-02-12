@@ -91,7 +91,7 @@ namespace DesiMovies.Sections
 
                 return new DetailPageConfig<RssSchema>
                 {
-                    Title = "Reviews by Kiran",
+                    Title = "reviews by Kiran",
                     LayoutBindings = bindings,
                     Actions = actions
                 };

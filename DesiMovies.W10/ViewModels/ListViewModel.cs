@@ -104,7 +104,7 @@ namespace DesiMovies.ViewModels
         private Section<TSchema> _section;
         private int _visibleItems;
         private SchemaBase _connected;
-        private NativeAd ad;
+        private NativeAd ad, ad1, ad2;
         private IEnumerable<TSchema> contentValue;
         private Func<ItemViewModel, bool> filterFuncValue;
         private int adCounter = 0;
@@ -142,11 +142,30 @@ namespace DesiMovies.ViewModels
             if (_section.Name == "BharatStudentUpdatesSection")
             {
                 ad = null;
+                ad1 = null;
+                ad2 = null;
+
+                //General call
                   NativeAdsManager nativeAdController = new NativeAdsManager("9WZDNCRDX48S", "1100016006");
-         //       NativeAdsManager nativeAdController = new NativeAdsManager("9WZDNCRDX48S", "TEST");
+                //reContent call
+                  NativeAdsManager nativeAdController1 = new NativeAdsManager("9WZDNCRDX48S", "0000000019");
+                //Taboola call
+                NativeAdsManager nativeAdController2 = new NativeAdsManager("9WZDNCRDX48S", "0000000022");
+                //       NativeAdsManager nativeAdController = new NativeAdsManager("9WZDNCRDX48S", "TEST");
+
                 nativeAdController.RequestAd();
+                nativeAdController1.RequestAd();
+                nativeAdController2.RequestAd();
+
+
                 nativeAdController.AdReady += OnAdReady;
                 nativeAdController.ErrorOccurred += OnAdError;
+
+                nativeAdController1.AdReady += OnAdReady1;
+                nativeAdController1.ErrorOccurred += OnAdError1;
+
+                nativeAdController2.AdReady += OnAdReady2;
+                nativeAdController2.ErrorOccurred += OnAdError2;
             }
 
         }
@@ -154,6 +173,16 @@ namespace DesiMovies.ViewModels
         void OnAdReady(object sender, object e)
         {
             ad = (NativeAd)e;
+        }
+
+        void OnAdReady1(object sender, object e)
+        {
+            ad1 = (NativeAd)e;
+        }
+
+        void OnAdReady2(object sender, object e)
+        {
+            ad2 = (NativeAd)e;
         }
 
 
@@ -164,6 +193,24 @@ namespace DesiMovies.ViewModels
             nativeAdController.RequestAd();
             nativeAdController.AdReady += OnAdReady;
             nativeAdController.ErrorOccurred += OnAdError;
+        }
+
+        void OnAdError1(object sender, object e)
+        {
+            adCounter++;
+            NativeAdsManager nativeAdController1 = new NativeAdsManager("9WZDNCRDX48S", "TEST");
+            nativeAdController1.RequestAd();
+            nativeAdController1.AdReady += OnAdReady1;
+            nativeAdController1.ErrorOccurred += OnAdError1;
+        }
+
+        void OnAdError2(object sender, object e)
+        {
+            adCounter++;
+            NativeAdsManager nativeAdController2 = new NativeAdsManager("9WZDNCRDX48S", "TEST");
+            nativeAdController2.RequestAd();
+            nativeAdController2.AdReady += OnAdReady2;
+            nativeAdController2.ErrorOccurred += OnAdError2;
         }
 
         public override async Task LoadDataAsync(bool forceRefresh = false, SchemaBase connected = null)
@@ -282,28 +329,72 @@ namespace DesiMovies.ViewModels
 
             if (_section.Name == "BharatStudentUpdatesSection")
             {
-                while (adCounter < 2 && ad == null) 
+                while (adCounter < 4 && ad == null) 
                 {
                     await Task.Delay(1000);
                 }
+
+                while (adCounter < 4 && ad1 == null)
+                {
+                    await Task.Delay(1000);
+                }
+
+                while (adCounter < 4 && ad2 == null)
+                {
+                    await Task.Delay(1000);
+                }
+
+
                 if (ad == null)
                 {
                     contentValue = content;
                     filterFuncValue = filterFunc;
 
                 }
+              
                 else
                 {
                     var contentList = content.ToList<TSchema>() as List<RssSchema>;
                     if (contentList != null)
                     {
+
+                        //Normal Ad
                         contentList.Insert(1, new RssSchema()
                         {
-                     
+
                             Title = ad.Title,
                             ImageUrl = ad.MainImages[0].Url,
-                            Summary = "  Ad  " + ad.Description,                   
+                            Summary = "  Ad  " + ad.Description,
+                            Content = ad.CallToAction,                                        
                         });
+
+                        if (ad1 != null)
+                        {
+                            //revcontent ad
+                            contentList.Insert(3, new RssSchema()
+                            {
+
+                                Title = ad1.Title,
+                                ImageUrl = ad1.MainImages[0].Url,
+                                Summary = "__Ad__" + ad.Description,
+                                Content = ad.CallToAction,
+                        });
+
+                        }
+
+                        if (ad2 != null)
+                        {
+
+                            //revcontent ad
+                            contentList.Insert(5, new RssSchema()
+                            {
+
+                                Title = ad2.Title,
+                                ImageUrl = ad2.MainImages[0].Url,
+                                Summary = "  Ad  " + ad.Description,
+                                Content = ad.CallToAction,
+                        });
+                        }
 
                         content = contentList as IEnumerable<TSchema>;
                     }

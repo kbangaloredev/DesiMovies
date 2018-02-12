@@ -27,6 +27,10 @@ using Windows.Services.Store;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 
+using Windows.UI.Xaml.Media.Imaging;
+
+
+
 namespace DesiMovies.Pages
 {
     public sealed partial class HomePage : Page
@@ -35,6 +39,8 @@ namespace DesiMovies.Pages
         InterstitialAd MyBannerAd;
 
         bool bannerready, videoready;
+
+        NativeAdsManager myNativeAdsManager = null;
 
         public HomePage()
         {
@@ -45,8 +51,9 @@ namespace DesiMovies.Pages
             var MyVideoAdUnitId = "11647923";
             //var MyVideoAdUnitId = "test";
 
-
-
+            NativeAdsManager myNativeAdsManager = null;
+            //string MyNativeAdUnitId = "test";
+             string MyNativeAdUnitId = "0000000022";
 
             // instantiate an InterstitialAd
             MyVideoAd = new InterstitialAd();
@@ -62,8 +69,16 @@ namespace DesiMovies.Pages
 
             // pre-fetch an ad 30-60 seconds before you need it
             MyVideoAd.RequestAd(AdType.Video, MyAppID, MyVideoAdUnitId);
-          //  MyBannerAd.RequestAd(AdType.Display, MyAppID, MyAdUnitId);
+            //  MyBannerAd.RequestAd(AdType.Display, MyAppID, MyAdUnitId);
 
+
+            //Native Ad events 
+            myNativeAdsManager = new NativeAdsManager(MyAppID, MyNativeAdUnitId);
+            myNativeAdsManager.AdReady += MyNativeAd_AdReady;
+            myNativeAdsManager.ErrorOccurred += MyNativeAdsManager_ErrorOccurred;
+
+            //Request Natve Ad
+            myNativeAdsManager.RequestAd();
 
             ViewModel = new MainViewModel(12);            
             InitializeComponent();
@@ -142,6 +157,91 @@ namespace DesiMovies.Pages
             // code
 
             var A = MyVideoAd.State;
+        }
+
+        NativeAd nativeAd; 
+
+
+        void MyNativeAd_AdReady(object sender, object e)
+        {
+
+
+            NativeAd nativeAd = (NativeAd)e;
+
+            // Show the ad icon.
+            if (nativeAd.AdIcon != null)
+            {
+                AdIconImage.Source = nativeAd.AdIcon.Source;
+
+                // Adjust the Image control to the height and width of the 
+                // provided ad icon.
+                AdIconImage.Height = nativeAd.AdIcon.Height;
+                AdIconImage.Width = nativeAd.AdIcon.Width;
+            }
+
+            // Show the ad title.
+            TitleTextBlock.Text = nativeAd.Title;
+
+            // Show the ad description.
+            if (!string.IsNullOrEmpty(nativeAd.Description))
+            {
+                DescriptionTextBlock.Text = nativeAd.Description;
+                DescriptionTextBlock.Visibility = Visibility.Visible;
+            }
+
+            // Display the first main image for the ad. Note that the service
+            // might provide multiple main images. 
+            if (nativeAd.MainImages.Count > 0)
+            {
+                NativeImage mainImage = nativeAd.MainImages[0];
+                BitmapImage bitmapImage = new BitmapImage();
+                bitmapImage.UriSource = new Uri(mainImage.Url);
+                MainImageImage.Source = bitmapImage;
+
+                // Adjust the Image control to the height and width of the 
+                // main image.
+                MainImageImage.Height = mainImage.Height;
+                MainImageImage.Width = mainImage.Width;
+                MainImageImage.Visibility = Visibility.Visible;
+            }
+
+            // Add the call to action string to the button.
+            if (!string.IsNullOrEmpty(nativeAd.CallToAction))
+            {
+                CallToActionButton.Content = nativeAd.CallToAction;
+                CallToActionButton.Visibility = Visibility.Visible;
+            }
+
+            // Show the ad sponsored by value.
+ //           if (!string.IsNullOrEmpty(nativeAd.SponsoredBy))
+//            {
+ //               SponsoredByTextBlock.Text = nativeAd.SponsoredBy;
+//                SponsoredByTextBlock.Visibility = Visibility.Visible;
+//            }
+
+            // Show the icon image for the ad.
+            if (nativeAd.IconImage != null)
+            {
+                BitmapImage bitmapImage = new BitmapImage();
+                bitmapImage.UriSource = new Uri(nativeAd.IconImage.Url);
+ //               IconImageImage.Source = bitmapImage;
+
+                // Adjust the Image control to the height and width of the 
+                // icon image.
+ //               IconImageImage.Height = nativeAd.IconImage.Height;
+ //               IconImageImage.Width = nativeAd.IconImage.Width;
+ //               IconImageImage.Visibility = Visibility.Visible;
+            }
+
+            // Register the container of the controls that display
+            // the native ad elements for clicks/impressions.
+            nativeAd.RegisterAdContainer(NativeAdContainer);
+        }
+
+        private void MyNativeAdsManager_ErrorOccurred(object sender, AdErrorEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("NativeAd error " + e.ErrorMessage +
+                " ErrorCode: " + e.ErrorCode.ToString());
         }
 
         private void Hyperlink_Click(Windows.UI.Xaml.Documents.Hyperlink sender, Windows.UI.Xaml.Documents.HyperlinkClickEventArgs args)

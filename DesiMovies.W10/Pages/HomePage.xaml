@@ -12,6 +12,8 @@
     xmlns:triggers="using:DesiMovies.Triggers"	
     xmlns:vm="using:DesiMovies.ViewModels"
    xmlns:UI="using:Microsoft.Advertising.WinRT.UI"
+   
+    
     DataContext="{Binding ViewModel, RelativeSource={RelativeSource Self}}"
     mc:Ignorable="d">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
@@ -25,6 +27,7 @@
             Background="{StaticResource AppBarBackground}"
             CommandBarOverflowPresenterStyle="{StaticResource WasCommandBarOverflowPresenter}"/>
         </was_controls:ShellControl.CommandBar>
+        
         <was_controls:ShellControl.PaneHeader>
             <was_controls:SearchBox
             x:Name="searchBox"
@@ -36,11 +39,13 @@
             SearchCommand="{Binding SearchCommand}"
             Foreground="{StaticResource NavigationPaneText}"/>
         </was_controls:ShellControl.PaneHeader>
+        
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
+            
             <was_controls:SectionList
 			x:Uid="SectionListItem"
 			ErrorColor="{StaticResource DescriptionForeground}"
@@ -74,6 +79,8 @@
                     </DataTemplate>
                 </was_controls:SectionListItem>
 
+
+                <!-- Hindi Movie News -->
                 <was_controls:SectionListItem
                 DataContext="{Binding HindiMovieNews}"
                 HeaderLinkClickCommand="{Binding SectionHeaderClickCommand}" 
@@ -86,6 +93,8 @@
                         <list_layouts:CarouselMedium DataContext="{Binding}" ItemsSource="{Binding Items}" ItemClickCommand="{Binding ItemClickCommand}" OneRowModeEnabled="True" Margin="19,0,12,24"/>
                     </DataTemplate>
                 </was_controls:SectionListItem>
+
+                <!-- Music Reviews -->
 
                 <was_controls:SectionListItem
                 DataContext="{Binding MusicReviews}"
@@ -100,10 +109,8 @@
                     </DataTemplate>
                 </was_controls:SectionListItem>
 
+                <!--Read Reviews Online instead -->
 
-                <!-- 
-            Add Hyperlink here
-              -->
                 <was_controls:SectionListItem
                 HeaderLinkClickCommand="{Binding SectionHeaderClickCommand}" 
                 HeaderLinkVisibility="Collapsed"
@@ -120,8 +127,8 @@
                         </StackPanel>
                     </DataTemplate>
                 </was_controls:SectionListItem>
-      
 
+                <!--Reviews by Kiran -->
                 <was_controls:SectionListItem
                 DataContext="{Binding ReviewsByKiran}"
                 HeaderLinkClickCommand="{Binding SectionHeaderClickCommand}" 
@@ -135,6 +142,7 @@
                     </DataTemplate>
                 </was_controls:SectionListItem>
 
+                <!--Now Running Update -->
                 <was_controls:SectionListItem
                 DataContext="{Binding NowRunningUpdates}"
                 HeaderLinkClickCommand="{Binding SectionHeaderClickCommand}" 
@@ -159,6 +167,7 @@
                         <controls:AdvertisingControl/>
                     </DataTemplate>
 
+                    <!-- Bharat Student Updates -->
                 </was_controls:SectionListItem>
                 <was_controls:SectionListItem
                 DataContext="{Binding BharatStudentUpdates}"
@@ -185,7 +194,7 @@
                     </DataTemplate>
                 </was_controls:SectionListItem>
 
-
+                <!--Bollywood Hungama earlier Bubble -->
                 <was_controls:SectionListItem
                 DataContext="{Binding Bubble}"
                 HeaderLinkClickCommand="{Binding SectionHeaderClickCommand}" 
@@ -198,6 +207,9 @@
                         <list_layouts:ListTextCard DataContext="{Binding}" ItemsSource="{Binding Items}" ItemClickCommand="{Binding ItemClickCommand}" OneRowModeEnabled="True" Margin="19,0,12,24"/>
                     </DataTemplate>
                 </was_controls:SectionListItem>
+                
+                <!--Remove second Banner / Added Native Add instead -->
+ <!--
                 <was_controls:SectionListItem                
                 DataContext="{Binding SectionAd}"
                 HeaderLinkVisibility="Collapsed"
@@ -210,7 +222,7 @@
                         <controls:AdvertisingControl/>
                     </DataTemplate>
                 </was_controls:SectionListItem>
-
+-->
                 <was_controls:SectionListItem
                 HeaderLinkClickCommand="{Binding SectionHeaderClickCommand}" 
                 HeaderLinkVisibility="Collapsed"
@@ -229,8 +241,34 @@
                 </was_controls:SectionListItem>
 
             </was_controls:SectionList>
+
+       <StackPanel x:Name="NativeAdContainer" Background="white" Width="1000" Height="500" Orientation="Vertical" VerticalAlignment ="Bottom" HorizontalAlignment="Stretch">
+         <Image x:Name="AdIconImage" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,20,20,20"/>
+         <TextBlock x:Name="TitleTextBlock" HorizontalAlignment="Left" VerticalAlignment="Center"
+              Text="The ad title will go here" FontSize="24" Foreground="White" Margin="20,0,0,10"/>
+         <TextBlock x:Name="DescriptionTextBlock" HorizontalAlignment="Left" VerticalAlignment="Center"
+               Foreground="White" TextWrapping="Wrap" Text="The ad description will go here"
+               Margin="20,0,0,0" Visibility="Collapsed"/>
+         <Image x:Name="MainImageImage" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,20,20,20" Visibility="Collapsed"/>
+         <Button x:Name="CallToActionButton" Background="Gray" Foreground="White"
+            HorizontalAlignment="Center" VerticalAlignment="Center" Width="Auto" Height="Auto"
+            Content="The call to action text will go here" Margin="20,20,20,20"
+            Visibility="Collapsed"/>
+      <!--
+         <StackPanel x:Name="SponsoredByStackPanel" Orientation="Horizontal" Margin="20,20,20,20">
+            <TextBlock x:Name="SponsoredByTextBlock" Text="The ad sponsored by text will go here"
+                   FontSize="24" Foreground="White" Margin="20,0,0,0" HorizontalAlignment="Left"
+                   VerticalAlignment="Center" Visibility="Collapsed"/>
+             <Image x:Name="IconImageImage" Margin="40,20,20,20" HorizontalAlignment="Left"
+               VerticalAlignment="Center" Visibility="Collapsed"/>
+             </StackPanel>
+         -->
+         
+       </StackPanel>
+
+
             <controls:DataUpdateInformationControl
-			Grid.Row="1"
+			Grid.Row="2"
 			Margin="22,4,22,4"
 			HorizontalAlignment="Left"
 			LastUpdateDateTime="{Binding LastUpdated}"

@@ -31,7 +31,7 @@ namespace DesiMovies.Sections
             var config = new YouTubeDataConfig
             {
                 QueryType = YouTubeQueryType.Playlist,
-                Query = @"PL4iCr-gSvhKwtLH8Pp-n8NbLVVrsp2BFm",
+                Query = @"PLItqFRzgD5SQpgWuN9ziOh9Pa2kX8EE3h",
             };
             return await _dataProvider.LoadDataAsync(config, MaxRecords);
         }
@@ -55,7 +55,7 @@ namespace DesiMovies.Sections
             {
                 return new ListPageConfig<YouTubeSchema>
                 {
-                    Title = "latest videos",
+                    Title = "Watch New Movie Trailers",
 
                     Page = typeof(Pages.LatestVideosListPage),
 
@@ -95,7 +95,7 @@ namespace DesiMovies.Sections
 
                 return new DetailPageConfig<YouTubeSchema>
                 {
-                    Title = "latest videos",
+                    Title = "watch latest movie trailers",
                     LayoutBindings = bindings,
                     Actions = actions
                 };

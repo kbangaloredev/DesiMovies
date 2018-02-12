@@ -28,7 +28,8 @@ namespace DesiMovies.Sections
             var config = new RssDataConfig
             {
                 //        Url = new Uri("http://zeenews.india.com/rss/entertainment-news.xml"),
-                Url = new Uri("http://english.jagran.com/englishresources/rss/lifestyle-entertainment.xml"),
+                // Url = new Uri("http://english.jagran.com/englishresources/rss/lifestyle-entertainment.xml"),
+                Url = new Uri("https://www.indiatvnews.com/rssnews/topstory-entertainment.xml"),
             };
             return await _dataProvider.LoadDataAsync(config, MaxRecords);
         }
@@ -52,7 +53,7 @@ namespace DesiMovies.Sections
             {
                 return new ListPageConfig<RssSchema>
                 {
-                    Title = "Now Running Updates",
+                    Title = "Entertainment News",
 
                     Page = typeof(Pages.NowRunningUpdatesListPage),
 
@@ -92,7 +93,7 @@ namespace DesiMovies.Sections
 
                 return new DetailPageConfig<RssSchema>
                 {
-                    Title = "Now Running Updates",
+                    Title = "entertainment news",
                     LayoutBindings = bindings,
                     Actions = actions
                 };
