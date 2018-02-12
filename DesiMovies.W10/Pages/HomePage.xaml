@@ -254,7 +254,7 @@
             HorizontalAlignment="Center" VerticalAlignment="Center" Width="Auto" Height="Auto"
             Content="The call to action text will go here" Margin="20,20,20,20"
             Visibility="Collapsed"/>
-      <!--
+      
          <StackPanel x:Name="SponsoredByStackPanel" Orientation="Horizontal" Margin="20,20,20,20">
             <TextBlock x:Name="SponsoredByTextBlock" Text="The ad sponsored by text will go here"
                    FontSize="24" Foreground="White" Margin="20,0,0,0" HorizontalAlignment="Left"
@@ -262,7 +262,7 @@
              <Image x:Name="IconImageImage" Margin="40,20,20,20" HorizontalAlignment="Left"
                VerticalAlignment="Center" Visibility="Collapsed"/>
              </StackPanel>
-         -->
+         
          
        </StackPanel>
 

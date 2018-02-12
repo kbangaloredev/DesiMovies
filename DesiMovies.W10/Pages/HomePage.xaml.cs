@@ -37,6 +37,8 @@ namespace DesiMovies.Pages
     {
         InterstitialAd MyVideoAd;
         InterstitialAd MyBannerAd;
+        NativeAd nativeAd;
+
 
         bool bannerready, videoready;
 
@@ -159,14 +161,11 @@ namespace DesiMovies.Pages
             var A = MyVideoAd.State;
         }
 
-        NativeAd nativeAd; 
-
-
         void MyNativeAd_AdReady(object sender, object e)
         {
 
 
-            NativeAd nativeAd = (NativeAd)e;
+            nativeAd = (NativeAd)e;
 
             // Show the ad icon.
             if (nativeAd.AdIcon != null)
@@ -213,24 +212,24 @@ namespace DesiMovies.Pages
             }
 
             // Show the ad sponsored by value.
- //           if (!string.IsNullOrEmpty(nativeAd.SponsoredBy))
-//            {
- //               SponsoredByTextBlock.Text = nativeAd.SponsoredBy;
-//                SponsoredByTextBlock.Visibility = Visibility.Visible;
-//            }
+            if (!string.IsNullOrEmpty(nativeAd.SponsoredBy))
+            {
+               SponsoredByTextBlock.Text = nativeAd.SponsoredBy;
+                SponsoredByTextBlock.Visibility = Visibility.Visible;
+            }
 
             // Show the icon image for the ad.
             if (nativeAd.IconImage != null)
             {
                 BitmapImage bitmapImage = new BitmapImage();
                 bitmapImage.UriSource = new Uri(nativeAd.IconImage.Url);
- //               IconImageImage.Source = bitmapImage;
+                IconImageImage.Source = bitmapImage;
 
                 // Adjust the Image control to the height and width of the 
                 // icon image.
- //               IconImageImage.Height = nativeAd.IconImage.Height;
- //               IconImageImage.Width = nativeAd.IconImage.Width;
- //               IconImageImage.Visibility = Visibility.Visible;
+                IconImageImage.Height = nativeAd.IconImage.Height;
+                IconImageImage.Width = nativeAd.IconImage.Width;
+                IconImageImage.Visibility = Visibility.Visible;
             }
 
             // Register the container of the controls that display
