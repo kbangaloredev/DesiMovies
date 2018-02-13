@@ -379,13 +379,20 @@
     <MainPackageIdentityName>15508RonavApps.TamilMovies</MainPackageIdentityName>
     <MainPackageIdentityName>15508RonavApps.LSUTigers</MainPackageIdentityName>
     <MainPackageIdentityName>15508RonavApps.FinanceNow</MainPackageIdentityName>
+    <MainPackageIdentityName>15508RonavApps.Dailyweatherforecast</MainPackageIdentityName>
     <MainPackageIdentityName>15508RonavApps.BollywoodBuzz</MainPackageIdentityName>
     <MainPackageIdentityName>15508RonavApps.AdvertisingTechNews</MainPackageIdentityName>
     <MainPackageIdentityName>15508RonavApps.TigerFootball</MainPackageIdentityName>
-    <MainPackageIdentityName>15508RonavApps.ISVCSPExampleApp</MainPackageIdentityName>
+    <MainPackageIdentityName>15508RonavApps.echoBIGGER</MainPackageIdentityName>
     <MainPackageIdentityName>15508RonavApps.m1dfAppNexusMediationTest</MainPackageIdentityName>
+    <MainPackageIdentityName>15508RonavApps.Onboardingtestapp</MainPackageIdentityName>
+    <MainPackageIdentityName>15508RonavApps.Test3rdparty</MainPackageIdentityName>
     <MainPackageIdentityName>15508RonavApps.TestApp2607</MainPackageIdentityName>
+    <MainPackageIdentityName>15508RonavApps.testapp-rajap</MainPackageIdentityName>
+    <MainPackageIdentityName>15508RonavApps.TestingApp1</MainPackageIdentityName>
+    <MainPackageIdentityName>15508RonavApps.WindowsDevNews</MainPackageIdentityName>
     <MainPackageIdentityName>15508RonavApps.WinxClubHD</MainPackageIdentityName>
+    <MainPackageIdentityName>15508RonavApps.Xbox-Vin1</MainPackageIdentityName>
   </AccountPackageIdentityNames>
   <PackageInfoList LandingUrl="https://developer.microsoft.com/dashboard/Application?appId=9WZDNCRDX48S" />
 </StoreAssociation>

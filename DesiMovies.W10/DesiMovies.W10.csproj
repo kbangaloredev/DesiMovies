@@ -21,7 +21,7 @@
     <RestorePackages>true</RestorePackages>
     <UapDefaultAssetScale>100</UapDefaultAssetScale>
     <UseDotNetNativeSharedAssemblyFrameworkPackage>True</UseDotNetNativeSharedAssemblyFrameworkPackage>
-    <PackageCertificateThumbprint>B6E7273EAC5BC3B6157CE06E3D676D6A2BABF3F6</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>DF7FD8B8BB4DB8105A2D0DADFADB3B0FA6F48C7E</PackageCertificateThumbprint>
     <PackageCertificateKeyFile>DesiMovies.W10_TemporaryKey.pfx</PackageCertificateKeyFile>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
