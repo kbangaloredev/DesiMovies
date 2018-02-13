@@ -28,8 +28,10 @@ using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 
 using Windows.UI.Xaml.Media.Imaging;
-
-
+using System.Collections.Generic;
+using Windows.UI.Xaml.Media;
+using System.Reflection;
+using System.Linq;
 
 namespace DesiMovies.Pages
 {
@@ -161,31 +163,53 @@ namespace DesiMovies.Pages
             var A = MyVideoAd.State;
         }
 
+
+        private StackPanel nativeAdStackPanel;
+
+        internal static void FindChildren<T>(List<T> results, DependencyObject startNode)
+            where T : DependencyObject
+        {
+            int count = VisualTreeHelper.GetChildrenCount(startNode);
+            for (int i = 0; i < count; i++)
+            {
+                DependencyObject current = VisualTreeHelper.GetChild(startNode, i);
+                if ((current.GetType()).Equals(typeof(T)) || (current.GetType().GetTypeInfo().IsSubclassOf(typeof(T))))
+                {
+                    T asType = (T)current;
+                    results.Add(asType);
+                }
+                FindChildren<T>(results, current);
+            }
+        }
+
+
         void MyNativeAd_AdReady(object sender, object e)
         {
-
-
             nativeAd = (NativeAd)e;
 
-            // Show the ad icon.
-            if (nativeAd.AdIcon != null)
+            if ((nativeAdStackPanel == null) || (nativeAd == null))
             {
-                AdIconImage.Source = nativeAd.AdIcon.Source;
-
-                // Adjust the Image control to the height and width of the 
-                // provided ad icon.
-                AdIconImage.Height = nativeAd.AdIcon.Height;
-                AdIconImage.Width = nativeAd.AdIcon.Width;
+                return;
+            }
+            else
+            {
+                nativeAdStackPanel.Visibility = Visibility.Visible;
             }
 
+            var children = new List<FrameworkElement>();
+            FindChildren(children, nativeAdStackPanel);
+
             // Show the ad title.
-            TitleTextBlock.Text = nativeAd.Title;
+            var textBlock = (TextBlock)GetChildWithName(children, "TitleTextBlock");
+            textBlock.Text = nativeAd.Title;
 
             // Show the ad description.
             if (!string.IsNullOrEmpty(nativeAd.Description))
             {
-                DescriptionTextBlock.Text = nativeAd.Description;
-                DescriptionTextBlock.Visibility = Visibility.Visible;
+                var descriptionBlock = (TextBlock)GetChildWithName(children, "DescriptionTextBlock");
+
+                descriptionBlock.Text = nativeAd.Description;
+                descriptionBlock.Visibility = Visibility.Visible;
             }
 
             // Display the first main image for the ad. Note that the service
@@ -195,47 +219,63 @@ namespace DesiMovies.Pages
                 NativeImage mainImage = nativeAd.MainImages[0];
                 BitmapImage bitmapImage = new BitmapImage();
                 bitmapImage.UriSource = new Uri(mainImage.Url);
-                MainImageImage.Source = bitmapImage;
+
+                var mainImageElement = (Image)GetChildWithName(children, "MainImageImage");
+                mainImageElement.Source = bitmapImage;
 
                 // Adjust the Image control to the height and width of the 
                 // main image.
-                MainImageImage.Height = mainImage.Height;
-                MainImageImage.Width = mainImage.Width;
-                MainImageImage.Visibility = Visibility.Visible;
+                //MainImageImage.Height = mainImage.Height;
+                //MainImageImage.Width = mainImage.Width;
+                //MainImageImage.Visibility = Visibility.Visible;
             }
 
             // Add the call to action string to the button.
             if (!string.IsNullOrEmpty(nativeAd.CallToAction))
             {
-                CallToActionButton.Content = nativeAd.CallToAction;
-                CallToActionButton.Visibility = Visibility.Visible;
+                var callToActionButtonElement = (Button)GetChildWithName(children, "CallToActionButton");
+                callToActionButtonElement.Content = nativeAd.CallToAction;
+                callToActionButtonElement.Visibility = Visibility.Visible;
             }
 
             // Show the ad sponsored by value.
-            if (!string.IsNullOrEmpty(nativeAd.SponsoredBy))
+            if ((!string.IsNullOrEmpty(nativeAd.SponsoredBy)) && (nativeAd.IconImage != null))
             {
-               SponsoredByTextBlock.Text = nativeAd.SponsoredBy;
-                SponsoredByTextBlock.Visibility = Visibility.Visible;
-            }
+                {
+                    var SponsoredByTextBlock = (TextBlock)GetChildWithName(children, "SponsoredByTextBlock");
+                    SponsoredByTextBlock.Text = nativeAd.SponsoredBy;
+                    SponsoredByTextBlock.Visibility = Visibility.Visible;
+                }
 
-            // Show the icon image for the ad.
-            if (nativeAd.IconImage != null)
-            {
-                BitmapImage bitmapImage = new BitmapImage();
-                bitmapImage.UriSource = new Uri(nativeAd.IconImage.Url);
-                IconImageImage.Source = bitmapImage;
 
-                // Adjust the Image control to the height and width of the 
-                // icon image.
-                IconImageImage.Height = nativeAd.IconImage.Height;
-                IconImageImage.Width = nativeAd.IconImage.Width;
-                IconImageImage.Visibility = Visibility.Visible;
-            }
+                    BitmapImage bitmapImage = new BitmapImage();
+
+                    var IconImageImage = (Image)GetChildWithName(children, "IconImageImage");
+                    bitmapImage.UriSource = new Uri(nativeAd.IconImage.Url);
+                    IconImageImage.Source = bitmapImage;
+
+                    // Adjust the Image control to the height and width of the 
+                    // icon image.
+                    //               IconImageImage.Height = nativeAd.IconImage.Height;
+                    //               IconImageImage.Width = nativeAd.IconImage.Width;
+                    IconImageImage.Visibility = Visibility.Visible;
+            }    
 
             // Register the container of the controls that display
             // the native ad elements for clicks/impressions.
-            nativeAd.RegisterAdContainer(NativeAdContainer);
+            nativeAd.RegisterAdContainer(nativeAdStackPanel);
         }
+
+        private FrameworkElement GetChildWithName(List<FrameworkElement> children, string name)
+        {
+            return children.First(c => c.Name == name);
+        }
+
+        private void NativeAdStackPanel_Loaded(object sender, RoutedEventArgs e)
+        {
+            nativeAdStackPanel = sender as StackPanel;
+        }
+
 
         private void MyNativeAdsManager_ErrorOccurred(object sender, AdErrorEventArgs e)
         {
