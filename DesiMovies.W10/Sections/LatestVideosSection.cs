@@ -55,7 +55,7 @@ namespace DesiMovies.Sections
             {
                 return new ListPageConfig<YouTubeSchema>
                 {
-                    Title = "Watch New Movie Trailers",
+                    Title = "watch new movie trailers",
 
                     Page = typeof(Pages.LatestVideosListPage),
 

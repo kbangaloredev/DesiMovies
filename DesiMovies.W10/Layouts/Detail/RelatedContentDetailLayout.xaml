@@ -49,6 +49,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid x:Name="contentGrid" Background="{StaticResource AppBackground}">
                     <Grid
@@ -161,7 +162,9 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
+                            
                         </Grid.RowDefinitions>
+
                         <TextBlock
                             Grid.Row="0"
                             Margin="3,0,0,0"
@@ -169,7 +172,7 @@
                             HorizontalAlignment="Left"
                             Style="{StaticResource DetailTitleStyle}"/>
                         <ContentPresenter Grid.Row="1" Margin="0,0,0,0" ContentTemplate="{Binding RelatedContentTemplate, ElementName=root}" />
-                        <Grid Grid.Row="2" Margin="3,-17,0,0">
+                   <!--  <Grid Grid.Row="2" Margin="3,-17,0,0">
                             <TextBlock
                                 Margin="0,4,0,0"
                                 Style="{StaticResource AppDescriptionsStyle}"
@@ -180,7 +183,44 @@
                                 Command="{Binding ViewModel.LoadRelatedContentNextPageCommand, ElementName=root}"
                                 Visibility="{Binding ViewModel.CanLoadMorePages, ElementName=root, Converter={StaticResource BoolToVisibilityConverter}}"/>
                         </Grid>
+                     -->
+                        <!--Begin Native Ad#1-->
+                        <StackPanel Grid.Column="1" Loaded="NativeAdStackPanel_Loaded" x:Name="NativeAdContainer" Visibility="Collapsed" BorderThickness="2" BorderBrush="Azure">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image x:Name="MainImageImage" Grid.Column="0" HorizontalAlignment="Left" Margin="10 0 0 0" Height="300" Width="150"/>
+                                <StackPanel Grid.Column="1">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="0" x:Name="TitleTextBlock" TextWrapping="Wrap" Margin="10"
+                                                           Text="The ad title will go here" FontSize="20" Foreground="Black" 
+                                                           VerticalAlignment="top"/>
+                                        <TextBlock Grid.Row="1" x:Name="DescriptionTextBlock" Margin="10"
+                                                               Foreground="Black" TextWrapping="Wrap" Text="Click below to read more" />
+                                        <Button Grid.Row="2" x:Name="CallToActionButton" Background="Gray" Foreground="White"
+                                                        HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="Auto" Margin="10"
+                                                        Content="Click here to read more" />
+                                        <StackPanel Grid.Row ="3" x:Name="SponsoredByStackPanel" Orientation="Horizontal" Margin="20,20,20,10">
+                                            <TextBlock x:Name="SponsoredByTextBlock" Text="The ad sponsored by text will go here"
+                                                               HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Collapsed"/>
+                                            <Image x:Name="IconImageImage" Margin="20,20,0,20" HorizontalAlignment="Left" Height="50" Width="50"
+                                                               VerticalAlignment="Center" Visibility="Collapsed"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                        <!--End Native Ad#1-->
                     </Grid>
+                   
                 </Grid>
             </Grid>
         </ScrollViewer>

@@ -15,28 +15,15 @@ using AppStudio.DataProviders.Rss;
 using DesiMovies.Sections;
 using DesiMovies.ViewModels;
 using AppStudio.Uwp;
-using Microsoft.Advertising.WinRT.UI;
 
 namespace DesiMovies.Pages
 {
     public sealed partial class MusicReviewsListPage : Page
     {
 
-        InterstitialAd MyBannerAd;
-
         public ListViewModel ViewModel { get; set; }
         public MusicReviewsListPage()
         {
-            var MyAppID = "9wzdncrdx48s";
-            // Interstitial banner adunit
-            var MyAdUnitId = "11691221";
-            
-            // instantiate an InterstitialAd
-            MyBannerAd = new InterstitialAd();
-            MyBannerAd.AdReady += MyBannerAd_AdReady;
-
-            MyBannerAd.RequestAd(AdType.Display, MyAppID, MyAdUnitId);
-
             ViewModel = ViewModelFactory.NewList(new MusicReviewsSection());
 
             this.InitializeComponent();
@@ -56,11 +43,5 @@ namespace DesiMovies.Pages
             }
             base.OnNavigatedTo(e);
         }
-        void MyBannerAd_AdReady(object sender, object e)
-        {
-            // Show the Interstitial Ad if ready
-            MyBannerAd.Show();
-        }
-
     }
 }

@@ -120,7 +120,7 @@
                 d:DataContext="{d:DesignData Source=/Assets/Design/DesignData.json, Type=vm:DesignViewModel, IsDesignTimeCreatable=true}">
                     <DataTemplate>
                         <StackPanel Width="1000">
-                            <TextBlock Text="Read Kiran's Reviews online" Style="{StaticResource SubheaderTextBlockStyle}"/>
+                            <TextBlock Text="read Kiran's reviews online" Style="{StaticResource SubheaderTextBlockStyle}"/>
                             <TextBlock TextWrapping="WrapWholeWords">
                     <Span xml:space="preserve"><Hyperlink Click="Hyperlink_Click">Click Here!</Hyperlink></Span>
                             </TextBlock>
@@ -243,7 +243,7 @@
                                         <Span xml:space="preserve"><Hyperlink Click="Reviews_Click">Click Here!</Hyperlink></Span>
                                     </TextBlock>
                                 </StackPanel>
-                                <StackPanel Grid.Column="1" Loaded="NativeAdStackPanel_Loaded" x:Name="NativeAdContainer" Visibility="Collapsed">
+                                <StackPanel Grid.Column="1" Loaded="NativeAdStackPanel_Loaded" x:Name="NativeAdContainer" Visibility="Collapsed"> 
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -272,9 +272,9 @@
                                                                VerticalAlignment="Center" Visibility="Collapsed"/>
                                                 </StackPanel>
                                             </Grid>
-                                        </StackPanel>
+                                     </StackPanel> 
                                     </Grid>
-                                </StackPanel>
+                                     </StackPanel>
 
                             </Grid>
                         </StackPanel>

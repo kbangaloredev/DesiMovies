@@ -53,7 +53,7 @@ namespace DesiMovies.Sections
             {
                 return new ListPageConfig<RssSchema>
                 {
-                    Title = "Entertainment News",
+                    Title = "entertainment news",
 
                     Page = typeof(Pages.NowRunningUpdatesListPage),
 

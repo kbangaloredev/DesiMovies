@@ -51,7 +51,7 @@ namespace DesiMovies.Sections
             {
                 return new ListPageConfig<RssSchema>
                 {
-                    Title = "Bharat Student Updates",
+                    Title = "Bharat Student updates",
 
                     Page = typeof(Pages.BharatStudentUpdatesListPage),
 

@@ -58,7 +58,7 @@ namespace DesiMovies.Sections
             {
                 return new ListPageConfig<TwitterSchema>
                 {
-                    Title = "latest on twitter",
+                    Title = "latest on Twitter",
 
                     Page = typeof(Pages.LatestOnTwitterListPage),
 

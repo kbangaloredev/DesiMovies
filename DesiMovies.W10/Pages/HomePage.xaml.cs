@@ -55,7 +55,7 @@ namespace DesiMovies.Pages
             var MyVideoAdUnitId = "11647923";
             //var MyVideoAdUnitId = "test";
 
-            NativeAdsManager myNativeAdsManager = null;
+            //NativeAdsManager myNativeAdsManager = null;
             //string MyNativeAdUnitId = "test";
              string MyNativeAdUnitId = "0000000022";
 
