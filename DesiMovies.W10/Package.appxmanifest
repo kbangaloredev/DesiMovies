@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="15508RonavApps.DesiMovies" Publisher="CN=89E80921-6477-4330-9ED7-4613259EAD43" Version="4.6.21.0" />
+  <Identity Name="15508RonavApps.DesiMovies" Publisher="CN=89E80921-6477-4330-9ED7-4613259EAD43" Version="4.6.23.0" />
   <mp:PhoneIdentity PhoneProductId="0e682729-f943-4eb4-81be-371d561900a8" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Desi Movies</DisplayName>

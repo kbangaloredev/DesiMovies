@@ -17,6 +17,7 @@ using DesiMovies.Sections;
 using DesiMovies.Navigation;
 using DesiMovies.ViewModels;
 using AppStudio.Uwp;
+using Microsoft.Advertising.WinRT.UI;
 
 namespace DesiMovies.Pages
 {
@@ -24,9 +25,23 @@ namespace DesiMovies.Pages
     {
         private DataTransferManager _dataTransferManager;
 
+        InterstitialAd MyBannerAd;
+
         public BubbleDetailPage()
         {
             ViewModel = ViewModelFactory.NewDetail(new BubbleSection());
+
+            var MyAppID = "9wzdncrdx48s";
+            // Interstitial banner adunit
+            var MyAdUnitId = "1100018164";
+            //var MyAdUnitId = "test";
+
+            // instantiate an InterstitialAd
+            MyBannerAd = new InterstitialAd();
+            MyBannerAd.AdReady += MyBannerAd_AdReady;
+
+            MyBannerAd.RequestAd(AdType.Display, MyAppID, MyAdUnitId);
+
             this.InitializeComponent();
 			commandBar.DataContext = ViewModel;
             Microsoft.HockeyApp.HockeyClient.Current.TrackEvent(this.GetType().FullName);
@@ -54,6 +69,12 @@ namespace DesiMovies.Pages
         private void OnDataRequested(DataTransferManager sender, DataRequestedEventArgs args)
         {
             ViewModel.ShareContent(args.Request);
+        }
+
+        void MyBannerAd_AdReady(object sender, object e)
+        {
+            // Show the Interstitial Ad if ready
+            MyBannerAd.Show();
         }
     }
 }
