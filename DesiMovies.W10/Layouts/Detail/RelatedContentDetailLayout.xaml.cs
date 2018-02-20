@@ -41,8 +41,8 @@ namespace DesiMovies.Layouts.Detail
             var MyAppID = "9wzdncrdx48s";
              string MyNativeAdUnitId = "0000000019";
              string MyNativeAdUnitId2 = "0000000022";
-             string MyNativeAdUnitId3 = "1100018038";
-             string MyNativeAdUnitId4 = "1100018153";
+             string MyNativeAdUnitId3 = "1100018195";
+             string MyNativeAdUnitId4 = "1100018194";
 
            // string MyNativeAdUnitId = "test";
            // string MyNativeAdUnitId2 = "test";

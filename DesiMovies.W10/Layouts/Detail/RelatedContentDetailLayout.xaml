@@ -210,7 +210,7 @@
                                                                Foreground="Black" TextWrapping="Wrap" Text="Read more" />
                                         <Button Grid.Row="2" x:Name="CallToActionButton" Background="Gray" Foreground="White"
                                                         HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="Auto" Margin="10"
-                                                        Content="Click here to read more" />
+                                                        Content="Read more" />
                                         <StackPanel Grid.Row ="4" x:Name="SponsoredByStackPanel" Orientation="Horizontal" Margin="10,20,20,10">
                                             <TextBlock x:Name="SponsoredByTextBlock" Text="Sponsored by Microsoft"
                                                                HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Collapsed"/>
@@ -246,10 +246,10 @@
                                                            Text="The ad title will go here" FontSize="20" Foreground="Black" 
                                                            VerticalAlignment="top"/>
                                         <TextBlock Grid.Row="1" x:Name="DescriptionTextBlock2" Margin="10"
-                                                               Foreground="Black" TextWrapping="Wrap" Text="Read more" />
+                                                               Foreground="Black" TextWrapping="Wrap" Text="Click here to read more" />
                                         <Button Grid.Row="2" x:Name="CallToActionButton2" Background="Gray" Foreground="White"
                                                         HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="Auto" Margin="10"
-                                                        Content="Click here to read more" />
+                                                        Content="Read more" />
                                         <StackPanel Grid.Row ="4" x:Name="SponsoredByStackPanel2" Orientation="Horizontal" Margin="10,20,20,10">
                                             <TextBlock x:Name="SponsoredByTextBlock2" Text="Sponsored by Microsoft"
                                                                HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Collapsed"/>
@@ -285,10 +285,10 @@
                                                            Text="The ad title will go here" FontSize="20" Foreground="Black" 
                                                            VerticalAlignment="top"/>
                                         <TextBlock Grid.Row="1" x:Name="DescriptionTextBlock3" Margin="10"
-                                                               Foreground="Black" TextWrapping="Wrap" Text="Read more" />
+                                                               Foreground="Black" TextWrapping="Wrap" Text="Click here to read more" />
                                         <Button Grid.Row="2" x:Name="CallToActionButton3" Background="Gray" Foreground="White"
                                                         HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="Auto" Margin="10"
-                                                        Content="Click here to read more" />
+                                                        Content="Read more" />
                                         <StackPanel Grid.Row ="4" x:Name="SponsoredByStackPanel3" Orientation="Horizontal" Margin="10,20,20,10">
                                             <TextBlock x:Name="SponsoredByTextBlock3" Text="Sponsored by Microsoft"
                                                                HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Collapsed"/>
@@ -325,10 +325,10 @@
                                                            Text="The ad title will go here" FontSize="20" Foreground="Black" 
                                                            VerticalAlignment="top"/>
                                         <TextBlock Grid.Row="1" x:Name="DescriptionTextBlock4" Margin="10"
-                                                               Foreground="Black" TextWrapping="Wrap" Text="Read more" />
+                                                               Foreground="Black" TextWrapping="Wrap" Text="Click here to read more" />
                                         <Button Grid.Row="2" x:Name="CallToActionButton4" Background="Gray" Foreground="White"
                                                         HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="Auto" Margin="10"
-                                                        Content="Click here to read more" />
+                                                        Content="Read more" />
                                         <StackPanel Grid.Row ="4" x:Name="SponsoredByStackPanel4" Orientation="Horizontal" Margin="10,20,20,10" VerticalAlignment="Bottom">
                                             <TextBlock x:Name="SponsoredByTextBlock4" Text="Sponsored by Microsoft"
                                                                HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Collapsed"/>
