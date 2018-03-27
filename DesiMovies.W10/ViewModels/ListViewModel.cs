@@ -144,13 +144,14 @@ namespace DesiMovies.ViewModels
                 ad = null;
                 ad1 = null;
                 ad2 = null;
+                adCounter = 0;
 
                 //General call
-                  NativeAdsManager nativeAdController = new NativeAdsManager("9WZDNCRDX48S", "1100016006");
+                NativeAdsManager nativeAdController = new NativeAdsManager("9WZDNCRDX48S", "0000000022");
                 //reContent call
                   NativeAdsManager nativeAdController1 = new NativeAdsManager("9WZDNCRDX48S", "0000000019");
                 //Taboola call
-                NativeAdsManager nativeAdController2 = new NativeAdsManager("9WZDNCRDX48S", "0000000022");
+                NativeAdsManager nativeAdController2 = new NativeAdsManager("9WZDNCRDX48S", "1100016006");
                 //       NativeAdsManager nativeAdController = new NativeAdsManager("9WZDNCRDX48S", "TEST");
 
                 nativeAdController.RequestAd();
@@ -172,16 +173,19 @@ namespace DesiMovies.ViewModels
 
         void OnAdReady(object sender, object e)
         {
+            adCounter++;
             ad = (NativeAd)e;
         }
 
         void OnAdReady1(object sender, object e)
         {
+            adCounter++;
             ad1 = (NativeAd)e;
         }
 
         void OnAdReady2(object sender, object e)
         {
+            adCounter++;
             ad2 = (NativeAd)e;
         }
 
@@ -190,8 +194,8 @@ namespace DesiMovies.ViewModels
         {
             adCounter++;
             NativeAdsManager nativeAdController = new NativeAdsManager("9WZDNCRDX48S", "TEST");
-            nativeAdController.RequestAd();
-            nativeAdController.AdReady += OnAdReady;
+           nativeAdController.RequestAd();
+           nativeAdController.AdReady += OnAdReady;
             nativeAdController.ErrorOccurred += OnAdError;
         }
 
@@ -199,7 +203,7 @@ namespace DesiMovies.ViewModels
         {
             adCounter++;
             NativeAdsManager nativeAdController1 = new NativeAdsManager("9WZDNCRDX48S", "TEST");
-            nativeAdController1.RequestAd();
+           nativeAdController1.RequestAd();
             nativeAdController1.AdReady += OnAdReady1;
             nativeAdController1.ErrorOccurred += OnAdError1;
         }
@@ -364,8 +368,9 @@ namespace DesiMovies.ViewModels
 
                             Title = ad.Title,
                             ImageUrl = ad.MainImages[0].Url,
-                            Summary = "  Ad  " + ad.Description,
-                            Content = ad.CallToAction,                                        
+                            Summary = ad.Description,
+                            Content = ad.CallToAction,    
+                            Author = ad.SponsoredBy,                                    
                         });
 
                         if (ad1 != null)
@@ -376,9 +381,10 @@ namespace DesiMovies.ViewModels
 
                                 Title = ad1.Title,
                                 ImageUrl = ad1.MainImages[0].Url,
-                                Summary = "__Ad__" + ad.Description,
+                                Summary = ad.Description,
                                 Content = ad.CallToAction,
-                        });
+                                Author = ad.SponsoredBy,
+                            });
 
                         }
 
@@ -391,12 +397,15 @@ namespace DesiMovies.ViewModels
 
                                 Title = ad2.Title,
                                 ImageUrl = ad2.MainImages[0].Url,
-                                Summary = "  Ad  " + ad.Description,
+                                Summary = ad.Description,
                                 Content = ad.CallToAction,
-                        });
+                                Author = ad.SponsoredBy,
+                            });
                         }
 
                         content = contentList as IEnumerable<TSchema>;
+                        contentValue = content;
+                        filterFuncValue = filterFunc;
                     }
                 }
             }

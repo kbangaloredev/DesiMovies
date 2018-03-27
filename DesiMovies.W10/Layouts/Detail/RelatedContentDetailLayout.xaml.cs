@@ -44,10 +44,10 @@ namespace DesiMovies.Layouts.Detail
              string MyNativeAdUnitId3 = "1100018195";
              string MyNativeAdUnitId4 = "1100018194";
 
-           // string MyNativeAdUnitId = "test";
-           // string MyNativeAdUnitId2 = "test";
-          //  string MyNativeAdUnitId3 = "test";
-          //  string MyNativeAdUnitId4 = "test";
+         //   string MyNativeAdUnitId = "test";
+         //  string MyNativeAdUnitId2 = "test";
+         //   string MyNativeAdUnitId3 = "test";
+         //  string MyNativeAdUnitId4 = "test";
 
             //Native Ad1 events 
             myNativeAdsManager = new NativeAdsManager(MyAppID, MyNativeAdUnitId);
@@ -149,16 +149,19 @@ namespace DesiMovies.Layouts.Detail
             }
 
             // Show the ad sponsored by value.
-            if ((!string.IsNullOrEmpty(nativeAd.SponsoredBy)) && (nativeAd.IconImage != null))
+            if (!string.IsNullOrEmpty(nativeAd.SponsoredBy))
             {
                 {
                     SponsoredByTextBlock.Text = nativeAd.SponsoredBy;
                     SponsoredByTextBlock.Visibility = Visibility.Visible;
                 }
-                BitmapImage bitmapImage = new BitmapImage();
-
-                bitmapImage.UriSource = new Uri(nativeAd.IconImage.Url);
-                IconImageImage.Source = bitmapImage;
+                
+                if (nativeAd.IconImage != null)
+                {
+                    BitmapImage bitmapImage = new BitmapImage();
+                    bitmapImage.UriSource = new Uri(nativeAd.IconImage.Url);
+                    IconImageImage.Source = bitmapImage;
+                }
 
                 // Adjust the Image control to the height and width of the 
                 // icon image.
@@ -252,16 +255,18 @@ namespace DesiMovies.Layouts.Detail
             }
 
             // Show the ad sponsored by value.
-            if ((!string.IsNullOrEmpty(nativeAd.SponsoredBy)) && (nativeAd.IconImage != null))
+            if (!string.IsNullOrEmpty(nativeAd.SponsoredBy))
             {
                 {
                     SponsoredByTextBlock2.Text = nativeAd.SponsoredBy;
                     SponsoredByTextBlock2.Visibility = Visibility.Visible;
                 }
-                BitmapImage bitmapImage = new BitmapImage();
-
-                bitmapImage.UriSource = new Uri(nativeAd.IconImage.Url);
-                IconImageImage2.Source = bitmapImage;
+                if (nativeAd.IconImage != null)
+                {
+                    BitmapImage bitmapImage = new BitmapImage();
+                    bitmapImage.UriSource = new Uri(nativeAd.IconImage.Url);
+                    IconImageImage.Source = bitmapImage;
+                }
 
                 // Adjust the Image control to the height and width of the 
                 // icon image.
@@ -328,15 +333,18 @@ namespace DesiMovies.Layouts.Detail
             }
 
             // Show the ad sponsored by value.
-            if ((!string.IsNullOrEmpty(nativeAd.SponsoredBy)) && (nativeAd.IconImage != null))
+            if (!string.IsNullOrEmpty(nativeAd.SponsoredBy)) 
             {
                 {
                     SponsoredByTextBlock3.Text = nativeAd.SponsoredBy;
                     SponsoredByTextBlock3.Visibility = Visibility.Visible;
                 }
-                BitmapImage bitmapImage = new BitmapImage();
-                bitmapImage.UriSource = new Uri(nativeAd.IconImage.Url);
-                IconImageImage3.Source = bitmapImage;
+                if (nativeAd.IconImage != null)
+                {
+                    BitmapImage bitmapImage = new BitmapImage();
+                    bitmapImage.UriSource = new Uri(nativeAd.IconImage.Url);
+                    IconImageImage.Source = bitmapImage;
+                }
 
                 // Adjust the Image control to the height and width of the 
                 // icon image.
@@ -402,16 +410,18 @@ namespace DesiMovies.Layouts.Detail
             }
 
             // Show the ad sponsored by value.
-            if ((!string.IsNullOrEmpty(nativeAd.SponsoredBy)) && (nativeAd.IconImage != null))
+            if (!string.IsNullOrEmpty(nativeAd.SponsoredBy))
             {
                 {
                     SponsoredByTextBlock4.Text = nativeAd.SponsoredBy;
                     SponsoredByTextBlock4.Visibility = Visibility.Visible;
                 }
-                BitmapImage bitmapImage = new BitmapImage();
-
-                bitmapImage.UriSource = new Uri(nativeAd.IconImage.Url);
-                IconImageImage4.Source = bitmapImage;
+                if (nativeAd.IconImage != null)
+                {
+                    BitmapImage bitmapImage = new BitmapImage();
+                    bitmapImage.UriSource = new Uri(nativeAd.IconImage.Url);
+                    IconImageImage.Source = bitmapImage;
+                }
 
                 // Adjust the Image control to the height and width of the 
                 // icon image.

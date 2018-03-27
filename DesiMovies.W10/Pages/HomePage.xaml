@@ -11,7 +11,7 @@
     xmlns:controls="using:DesiMovies.Layouts.Controls"
     xmlns:triggers="using:DesiMovies.Triggers"	
     xmlns:vm="using:DesiMovies.ViewModels"
-   xmlns:UI="using:Microsoft.Advertising.WinRT.UI"
+    xmlns:UI="using:Microsoft.Advertising.WinRT.UI"
    
     
     DataContext="{Binding ViewModel, RelativeSource={RelativeSource Self}}"
@@ -155,6 +155,8 @@
                         <list_layouts:CarouselMedium DataContext="{Binding}" ItemsSource="{Binding Items}" ItemClickCommand="{Binding ItemClickCommand}" OneRowModeEnabled="True" Margin="19,0,12,24"/>
                     </DataTemplate>
                 </was_controls:SectionListItem>
+                
+                <!-- Ad Control  -->
                 <was_controls:SectionListItem                
                 DataContext="{Binding SectionAd}"
                 HeaderLinkVisibility="Collapsed"
@@ -178,9 +180,13 @@
                 LoadingVisibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Collapsed}"
                 d:DataContext="{d:DesignData Source=/Assets/Design/DesignData.json, Type=vm:DesignViewModel, IsDesignTimeCreatable=true}">
                     <DataTemplate>
-                        <list_layouts:ListBigHorizontalCardBox DataContext="{Binding}" ItemsSource="{Binding Items}" ItemClickCommand="{Binding ItemClickCommand}" OneRowModeEnabled="True" Margin="19,0,12,24"/>
+                        <list_layouts:CarouselMedium DataContext="{Binding}" ItemsSource="{Binding Items}" ItemClickCommand="{Binding ItemClickCommand}" OneRowModeEnabled="True" Margin="19,0,12,24"/>
+<!--                        <list_layouts:ListBigHorizontalCardBox DataContext="{Binding}" ItemsSource="{Binding Items}" ItemClickCommand="{Binding ItemClickCommand}" OneRowModeEnabled="True" Margin="19,0,12,24"/>
+-->
                     </DataTemplate>
                 </was_controls:SectionListItem>
+                
+                <!--Twitter Section-->
                 <was_controls:SectionListItem
                 DataContext="{Binding LatestOnTwitter}"
                 HeaderLinkClickCommand="{Binding SectionHeaderClickCommand}" 
@@ -204,7 +210,10 @@
                 LoadingVisibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Collapsed}"
                 d:DataContext="{d:DesignData Source=/Assets/Design/DesignData.json, Type=vm:DesignViewModel, IsDesignTimeCreatable=true}">
                     <DataTemplate>
-                        <list_layouts:ListTextCard DataContext="{Binding}" ItemsSource="{Binding Items}" ItemClickCommand="{Binding ItemClickCommand}" OneRowModeEnabled="True" Margin="19,0,12,24"/>
+                        <list_layouts:CarouselMedium DataContext="{Binding}" ItemsSource="{Binding Items}" ItemClickCommand="{Binding ItemClickCommand}" OneRowModeEnabled="True" Margin="19,0,12,24"/>
+                     
+<!--                     <list_layouts:ListTextCard DataContext="{Binding}" ItemsSource="{Binding Items}" ItemClickCommand="{Binding ItemClickCommand}" OneRowModeEnabled="True" Margin="19,0,12,24"/>
+ -->
                     </DataTemplate>
                 </was_controls:SectionListItem>
                 

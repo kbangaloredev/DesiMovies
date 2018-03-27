@@ -27,7 +27,8 @@ namespace DesiMovies.Sections
         {
             var config = new RssDataConfig
             {
-                Url = new Uri("http://www.bharatstudent.com/cafebharat/hindi_rss.php"),
+                //       Url = new Uri("http://www.bharatstudent.com/cafebharat/hindi_rss.php"),
+                Url = new Uri("https://timesofindia.indiatimes.com/rssfeeds/1081479906.cms"),
             };
             return await _dataProvider.LoadDataAsync(config, MaxRecords);
         }
@@ -51,7 +52,7 @@ namespace DesiMovies.Sections
             {
                 return new ListPageConfig<RssSchema>
                 {
-                    Title = "Bharat Student updates",
+                    Title = "TOI updates",
 
                     Page = typeof(Pages.BharatStudentUpdatesListPage),
 
@@ -91,7 +92,7 @@ namespace DesiMovies.Sections
 
                 return new DetailPageConfig<RssSchema>
                 {
-                    Title = "Bharat Student updates",
+                    Title = "TOI updates",
                     LayoutBindings = bindings,
                     Actions = actions
                 };
